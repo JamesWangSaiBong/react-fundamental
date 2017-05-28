@@ -1,8 +1,7 @@
 var axios = require('axios');
 
-var id = 'YOUR_CLIENT_ID';
-var sec = 'YOUR_SECRET_ID';
-var params = `?client_id=${id}&client_secrey=${sec}`;
+var accessToken = '817d0f6eb5e1440cc082ccfa6fd66581e1aa565a';
+var params = `?access_token=${accessToken}`;
 
 function getProfile (username) {
   return axios.get(`https://api.github.com/users/${username}${params}`)
@@ -12,7 +11,7 @@ function getProfile (username) {
 }
 
 function getUserRepos (username) {
-  return axois.get(`$https://api.github.com/users/${username}/repos${params}&per_page=100`);
+  return axios.get(`https://api.github.com/users/${username}/repos${params}&per_page=100`);
 }
 
 function getStarCount(repos) {
@@ -23,18 +22,18 @@ function getStarCount(repos) {
 
 function calculateScore(profile, repos) {
   var followers = profile.followers;
-  var totalStars = getSarCount(repos);
+  var totalStars = getStarCount(repos);
   
   return (followers * 3) + totalStars;
 }
 
 function handleError(err) {
-  cosnole.warn(err);
+  console.warn(err);
   return null;
 }
 
 function getUserData(player) {
-  return axois.all([
+  return axios.all([
     getProfile(player),
     getUserRepos(player)
   ]).then(function(data) {
