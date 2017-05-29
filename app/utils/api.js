@@ -1,6 +1,6 @@
 var axios = require('axios');
 
-var accessToken = 'ACCESS_TOKEN';
+var accessToken = '817d0f6eb5e1440cc082ccfa6fd66581e1aa565a';
 var params = `?access_token=${accessToken}`;
 
 function getProfile (username) {
